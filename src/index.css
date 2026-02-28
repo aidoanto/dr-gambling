@@ -420,6 +420,95 @@ tr:hover {
   background: var(--text-dim);
 }
 
+/* Sign-in gate */
+.sign-in-gate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.sign-in-box {
+  text-align: center;
+  padding: 48px;
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  max-width: 420px;
+  width: 100%;
+}
+
+.sign-in-box h1 {
+  color: var(--phosphor);
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.sign-in-subtitle {
+  color: var(--text-dim);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.sign-in-warning {
+  color: var(--red);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.sign-in-btn {
+  background: var(--green-dim);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  font-family: inherit;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sign-in-btn:hover {
+  background: var(--green);
+}
+
+.sign-in-fine-print {
+  color: var(--text-dim);
+  font-size: 10px;
+  margin-top: 24px;
+  font-style: italic;
+}
+
+.sign-out-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 4px 12px;
+  font-family: inherit;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sign-out-btn:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .grid-2, .grid-3, .grid-4 {

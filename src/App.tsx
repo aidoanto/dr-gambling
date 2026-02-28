@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "convex/react";
+import { useAuthActions } from "@convex-dev/auth/react";
+import { useConvexAuth } from "convex/react";
 import { api } from "../convex/_generated/api";
 import Dashboard from "./pages/Dashboard";
 import Portfolio from "./pages/Portfolio";
@@ -11,9 +13,52 @@ import { HOSPITAL_EXTERIOR } from "./images";
 
 type Page = "dashboard" | "portfolio" | "patients" | "chat" | "notes" | "profile";
 
+function SignIn() {
+  const { signIn } = useAuthActions();
+  return (
+    <div className="sign-in-gate">
+      <div className="sign-in-box">
+        <h1>ST. AMBROSE TEACHING HOSPITAL</h1>
+        <p className="sign-in-subtitle">INTERNAL MONITORING SYSTEM</p>
+        <p className="sign-in-warning">AUTHORIZED PERSONNEL ONLY</p>
+        <button
+          className="sign-in-btn"
+          onClick={() => void signIn("google")}
+        >
+          Sign in with Google
+        </button>
+        <p className="sign-in-fine-print">
+          Dr. Gambling doesn't know you can see this.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
+  const { isAuthenticated, isLoading } = useConvexAuth();
+
+  if (isLoading) {
+    return (
+      <div className="sign-in-gate">
+        <div className="sign-in-box">
+          <p style={{ color: "var(--phosphor)" }}>AUTHENTICATING...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <SignIn />;
+  }
+
+  return <AuthenticatedApp />;
+}
+
+function AuthenticatedApp() {
   const [page, setPage] = useState<Page>("dashboard");
   const simState = useQuery(api.simulation.getState);
+  const { signOut } = useAuthActions();
 
   const simTimeStr = simState?.simTime
     ? new Date(simState.simTime).toLocaleString()
@@ -33,6 +78,10 @@ export default function App() {
         <div className="status">
           <span className="live">{paused ? "PAUSED" : "LIVE"}</span>
           {" | "}SIM: {simTimeStr} | SPEED: {speedStr} | TICK #{simState?.tickCount ?? 0}
+          {" | "}
+          <button className="sign-out-btn" onClick={() => void signOut()}>
+            Sign Out
+          </button>
         </div>
       </header>
       <nav className="nav">

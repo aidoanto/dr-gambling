@@ -9,9 +9,11 @@
  */
 
 import type * as agent from "../agent.js";
+import type * as auth from "../auth.js";
 import type * as brain from "../brain.js";
 import type * as chat from "../chat.js";
 import type * as crons from "../crons.js";
+import type * as http from "../http.js";
 import type * as market from "../market.js";
 import type * as patients from "../patients.js";
 import type * as portfolio from "../portfolio.js";
@@ -26,9 +28,11 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   agent: typeof agent;
+  auth: typeof auth;
   brain: typeof brain;
   chat: typeof chat;
   crons: typeof crons;
+  http: typeof http;
   market: typeof market;
   patients: typeof patients;
   portfolio: typeof portfolio;
