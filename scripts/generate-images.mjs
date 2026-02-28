@@ -7,7 +7,8 @@
 import { GoogleGenAI } from "@google/genai";
 import { writeFileSync, mkdirSync, existsSync } from "fs";
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "***REDACTED***";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+if (!GEMINI_API_KEY) throw new Error("GEMINI_API_KEY env var required");
 const MODEL = "gemini-3.1-flash-image-preview"; // Nano Banana 2
 
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
