@@ -189,6 +189,16 @@ export default defineSchema({
     .index("byCreatedAt", ["createdAt"]),
 
   // ---------------------------------------------------------------------------
+  // CHARACTERS — Hospital staff that users claim as their identity
+  // ---------------------------------------------------------------------------
+  characters: defineTable({
+    name: v.string(),
+    role: v.string(),
+    imagePath: v.string(),
+    claimedByUserId: v.optional(v.id("users")),
+  }).index("byClaimedByUserId", ["claimedByUserId"]),
+
+  // ---------------------------------------------------------------------------
   // SIMULATION STATE — The clock that drives everything
   // ---------------------------------------------------------------------------
   simulationState: defineTable({

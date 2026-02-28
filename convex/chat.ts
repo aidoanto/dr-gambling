@@ -1,6 +1,7 @@
 import { mutation, query } from "./_generated/server";
 import { internal } from "./_generated/api";
 import { v } from "convex/values";
+import { getAuthUserId } from "@convex-dev/auth/server";
 
 export const list = query({
   args: { limit: v.optional(v.number()) },
@@ -56,6 +57,38 @@ export const send = mutation({
         triggerMessageId: msgId,
       });
     }
+
+    return msgId;
+  },
+});
+
+export const sendAsCharacter = mutation({
+  args: {
+    content: v.string(),
+  },
+  handler: async (ctx, { content }) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) throw new Error("Not authenticated");
+
+    const character = await ctx.db
+      .query("characters")
+      .withIndex("byClaimedByUserId", (q) => q.eq("claimedByUserId", userId))
+      .first();
+    if (!character) throw new Error("No character claimed — pick one from the cafeteria");
+
+    const state = await ctx.db.query("simulationState").first();
+    const msgId = await ctx.db.insert("chatMessages", {
+      sender: character.name,
+      content,
+      messageType: "text",
+      simTime: state?.simTime ?? Date.now(),
+      createdAt: Date.now(),
+    });
+
+    // Wake up Dr. Gambling's brain
+    await ctx.scheduler.runAfter(1500, internal.brain.respond, {
+      triggerMessageId: msgId,
+    });
 
     return msgId;
   },

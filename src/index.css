@@ -509,9 +509,100 @@ tr:hover {
   color: var(--red);
 }
 
+/* Cafeteria Picker */
+.cafeteria-gate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg);
+  padding: 24px;
+}
+
+.cafeteria-box {
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+}
+
+.cafeteria-box h1 {
+  color: var(--phosphor);
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin-bottom: 4px;
+}
+
+.cafeteria-subtitle {
+  color: var(--yellow);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.cafeteria-hint {
+  color: var(--text-dim);
+  font-size: 11px;
+  margin-bottom: 32px;
+}
+
+.cafeteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.cafeteria-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s;
+}
+
+.cafeteria-card:not(.claimed):hover {
+  border-color: var(--phosphor);
+  background: var(--bg-panel);
+  box-shadow: 0 0 12px rgba(51, 255, 51, 0.1);
+}
+
+.cafeteria-card.claimed {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.cafeteria-card-info {
+  text-align: center;
+}
+
+.cafeteria-card-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-bottom: 2px;
+}
+
+.cafeteria-card-role {
+  font-size: 9px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .grid-2, .grid-3, .grid-4 {
     grid-template-columns: 1fr;
+  }
+  .cafeteria-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
 }

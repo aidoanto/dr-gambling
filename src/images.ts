@@ -17,6 +17,20 @@ const CEO_IMAGES: Record<string, string> = {
 // Doctor/staff name → portrait filename
 const DOCTOR_IMAGES: Record<string, string> = {
   "Dr. Gambling": "/images/dr-gambling.png",
+  "Dr. Helen Kowalski": "/images/dr-kowalski.png",
+  "Dr. Priya Yuen": "/images/dr-yuen.png",
+  "Dr. Ananya Patel": "/images/dr-patel.png",
+  "Dr. James Whitfield": "/images/staff-whitfield.png",
+  "Dr. Susan Chen": "/images/staff-chen.png",
+  "Dr. Marcus Rivera": "/images/staff-rivera.png",
+  "Dr. Linda Okafor": "/images/staff-okafor.png",
+  "Nurse Ray Tanaka": "/images/staff-tanaka.png",
+  "Nurse Deborah Simms": "/images/staff-simms.png",
+  "Frank Callahan": "/images/staff-callahan.png",
+  "Theresa Voss": "/images/staff-voss.png",
+  "Dr. Robert Hargrove": "/images/staff-hargrove.png",
+  "Janet Moreau": "/images/staff-moreau.png",
+  // Legacy short names (for old chat messages)
   "Dr. Kowalski": "/images/dr-kowalski.png",
   "Dr. Yuen": "/images/dr-yuen.png",
   "Dr. Patel": "/images/dr-patel.png",
