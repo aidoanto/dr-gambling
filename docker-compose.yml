@@ -1,0 +1,35 @@
+# Dr. Gambling — Base Docker Compose
+# Usage: docker compose up --build
+
+services:
+  bruno:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "${BRUNO_PORT:-3000}:3000"
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    environment:
+      - VITE_CONVEX_URL
+      - CONVEX_URL=${VITE_CONVEX_URL}
+      - OPENROUTER_API_KEY
+      - REPLICATE_API_TOKEN
+      - GEMINI_API_KEY
+      - BRUNO_PORT=${BRUNO_PORT:-3000}
+      - SIM_SPEED=${SIM_SPEED:-10}
+      - NODE_ENV=production
+    volumes:
+      - bruno-pi-sessions:/home/dr_gambling/.pi/sessions
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${BRUNO_PORT:-3000}/health"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 60s
+
+volumes:
+  bruno-pi-sessions:
+    name: bruno-pi-sessions

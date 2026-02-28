@@ -1,11 +1,38 @@
-# Python-generated files
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Pi sessions (local to container)
+.pi/sessions/
+
+# IDE
+.vscode/
+.cursor/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python (still available in container)
 __pycache__/
 *.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
+.venv/
 
-# Virtual environments
-.venv
-.env
+# Convex
+.convex/
+
+# Screenshots / preview images
+*.png
+
+# Playwright MCP
+.playwright-mcp/

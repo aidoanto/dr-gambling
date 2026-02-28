@@ -1,0 +1,32 @@
+# Dr. Gambling — Synology NAS Overrides
+# Usage: docker compose -f docker-compose.yml -f docker-compose.nas.yml up -d
+#
+# Uses host networking to fix DNS resolution issues on Synology.
+# Port mappings from base config are IGNORED with host networking.
+# Custom port via NAS_BRUNO_PORT env var (default 8042).
+#
+# For Cloudflare Tunnel, point your tunnel to:
+#   bruno.lakembalab.com -> http://localhost:8042
+
+services:
+  bruno:
+    network_mode: host
+    environment:
+      - BRUNO_PORT=${NAS_BRUNO_PORT:-8042}
+    volumes:
+      # Pi sessions persist across container restarts on NAS
+      - /volume1/lab/projects/bruno-gambling/pi-sessions:/home/dr_gambling/.pi/sessions
+      # Logs on NAS
+      - /volume1/lab/projects/bruno-gambling/logs:/app/logs
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://localhost:${NAS_BRUNO_PORT:-8042}/health",
+        ]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 60s

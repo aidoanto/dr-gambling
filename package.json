@@ -1,0 +1,32 @@
+{
+  "name": "dr-gambling",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Dr. Bruno Gambling, M.D. — AI diagnostician and market speculator",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "convex:dev": "convex dev",
+    "convex:deploy": "convex deploy",
+    "seed": "convex run seed:seedWorld",
+    "start": "node dist/start.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/genai": "^1.43.0",
+    "convex": "^1.27.0",
+    "openai": "^4.93.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.5.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.20",
+    "@types/react-dom": "^18.3.6",
+    "@vitejs/plugin-react": "^4.4.1",
+    "typescript": "~5.7.3",
+    "vite": "^6.3.0"
+  }
+}
