@@ -31,8 +31,9 @@ __pycache__/
 # Convex
 .convex/
 
-# Screenshots / preview images
+# Screenshots / preview images (but not public assets)
 *.png
+!public/images/*.png
 
 # Playwright MCP
 .playwright-mcp/
