@@ -1,0 +1,4 @@
+---
+alwaysApply: true
+---
+If this project uses Python, it will use uv instead of pip as the main python package manager.
